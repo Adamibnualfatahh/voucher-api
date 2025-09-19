@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VoucherIndexRequest;
+use App\Http\Resources\VoucherResource;
 use App\Services\VoucherService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class VoucherController extends Controller
 {
@@ -12,21 +14,20 @@ class VoucherController extends Controller
     {
     }
 
-    public function generate(): JsonResponse
+    public function generate(): VoucherResource
     {
         $voucher = $this->voucherService->generateVoucher();
-        return response()->json($voucher);
+        return new VoucherResource($voucher);
     }
 
-    public function index(Request $request): JsonResponse
+    public function index(VoucherIndexRequest $request): AnonymousResourceCollection
     {
-        $vouchers = $this->voucherService->getAllVouchers($request->all());
-        return response()->json($vouchers);
+        $vouchers = $this->voucherService->getAllVouchers($request->validated());
+        return VoucherResource::collection($vouchers);
     }
 
-    public function show($code): JsonResponse
+    public function show($code): VoucherResource|JsonResponse
     {
-        $voucher = $this->voucherService->getVoucherByCode($code);
-        return response()->json($voucher);
+        return new VoucherResource($this->voucherService->getVoucherByCode($code));
     }
 }

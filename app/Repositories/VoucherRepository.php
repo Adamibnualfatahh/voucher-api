@@ -14,6 +14,6 @@ class VoucherRepository extends EloquentRepository implements VoucherRepositoryI
 
     public function findByCode(string $code): ?Voucher
     {
-        return $this->model->where('code', $code)->first();
+        return $this->model->where('code', $code)->firstOrFail();
     }
 }
