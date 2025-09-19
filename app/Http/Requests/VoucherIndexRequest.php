@@ -25,8 +25,8 @@ class VoucherIndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'select' => ['sometimes', 'string'],
-            'sort_by' => ['sometimes', 'string', 'in:id,code,created_at,updated_at'],
+            'select'   => ['sometimes', 'string'],
+            'sort_by'  => ['sometimes', 'string', 'in:id,code,created_at,updated_at'],
             'sort_dir' => ['sometimes', 'string', 'in:asc,desc'],
             'per_page' => ['sometimes', 'integer', 'min:1', 'max:100'],
         ];

@@ -2,17 +2,17 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Jobs\GenerateVoucherJob;
+use Illuminate\Console\Command;
 
 class GenerateVoucher extends Command
 {
-    protected $signature = 'voucher:generate {total=1000} {--batch=5000}';
+    protected $signature   = 'voucher:generate {total=1000} {--batch=5000}';
     protected $description = 'Generate vouchers using queue jobs';
 
     public function handle(): void
     {
-        $total = (int) $this->argument('total');
+        $total     = (int) $this->argument('total');
         $batchSize = (int) $this->option('batch');
 
         $this->info("Dispatching {$total} vouchers into jobs...");
@@ -23,7 +23,7 @@ class GenerateVoucher extends Command
         for ($i = 0; $i < $jobs; $i++) {
             $size = min($batchSize, $total - ($i * $batchSize));
             GenerateVoucherJob::dispatch($size);
-            $this->line("Dispatched batch ".($i + 1)." with {$size} vouchers");
+            $this->line('Dispatched batch '.($i + 1)." with {$size} vouchers");
         }
 
         $dispatchTime = round(microtime(true) - $start, 2);

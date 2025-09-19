@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Repositories\EloquentRepository;
 use App\Interfaces\RepositoryInterface;
-use App\Repositories\VoucherRepository;
 use App\Interfaces\VoucherRepositoryInterface;
+use App\Repositories\EloquentRepository;
+use App\Repositories\VoucherRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

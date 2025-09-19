@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Interfaces\VoucherRepositoryInterface;
+use App\Models\Voucher;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
-use App\Models\Voucher;
 
 readonly class VoucherService
 {

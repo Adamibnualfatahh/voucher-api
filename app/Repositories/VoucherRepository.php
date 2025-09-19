@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Models\Voucher;
 use App\Interfaces\VoucherRepositoryInterface;
+use App\Models\Voucher;
 
 class VoucherRepository extends EloquentRepository implements VoucherRepositoryInterface
 {

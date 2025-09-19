@@ -12,7 +12,10 @@ use Illuminate\Support\Str;
 
 class GenerateVoucherJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public int $count;
 
@@ -26,7 +29,7 @@ class GenerateVoucherJob implements ShouldQueue
         $batch = [];
         for ($i = 0; $i < $this->count; $i++) {
             $batch[] = [
-                'code' => strtoupper(Str::random(12)),
+                'code'       => strtoupper(Str::random(12)),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
